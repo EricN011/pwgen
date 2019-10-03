@@ -72,8 +72,25 @@ var charLet = [
   "y",
   "z"
 ];
-var isCharSpec = true;
-var isCharNum = true;
+// var isCharSpec = true;
+// var isCharNum = true;
+
+var charChoice = [];
+
+var hasCharNum = confirm("Numbers?");
+var hasCharSpec = confirm("Special Characters?");
+var hasCharLet = confirm("Uppercase Characters?");
+var hasCharLet = confirm("Lowercase Characters?");
+
+if (hasCharSpec) {
+  charChoice = charChoice.concat(charSpec);
+}
+if (hasCharNum) {
+  charChoice = charChoice.concat(charNum);
+}
+if (hasCharLet) {
+  charChoice = charChoice.concat(charLet);
+}
 
 function shuffle(array) {
   var currentIndex = array.length,
@@ -86,7 +103,7 @@ function shuffle(array) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
 
-    // And swap it with the current element.
+    // And swap it with p.the current element.
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
@@ -98,17 +115,21 @@ function shuffle(array) {
 /* defined function */
 function createPassword() {
   for (i = 0; i < charLen; i++) {
-    if (isCharSpec === true && i === 0) {
-      var randomSymNo = Math.floor(Math.random() * charSpec.length);
-      /* inject a symbol in the string */
-      pw.push(charSpec[randomSymNo]);
-    } else {
-      /* inject a uppercase letter into the string */
-      var randomNo = Math.floor(Math.random() * charLet.length);
-      pw.push(charLet[randomNo]);
-    }
+    var randomSymNo = Math.floor(Math.random() * charChoice.length);
+    pw.push(charChoice[randomSymNo]);
+    console.log(pw);
+    // for (i = 0; i < charLen; i++) {
+    //   if (isCharSpec === true && i === 0) {
+    //     var randomSymNo = Math.floor(Math.random() * charSpec.length);
+    //     /* inject a symbol in the string */
+    //     pw.push(charSpec[randomSymNo]);
+    //   } else {
+    //     /* inject a uppercase letter into the string */
+    //     var randomNo = Math.floor(Math.random() * charLet.length);
+    //     pw.push(charLet[randomNo]);
+    //   }
   }
-  /* randomize array & convert into a string */
+  /* randomize array &;/ convert into a string */
   pwShuffle = shuffle(pw);
   var newPass = "";
   for (i = 0; i < pwShuffle.length; i++) {
