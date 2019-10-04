@@ -1,24 +1,12 @@
 var pw = [];
 var charLen = prompt("How many characters would you like for your password?");
 charLen = parseInt(charLen, 10);
-var charSpec = [
-  "(",
-  "[",
-  "#",
-  "?",
-  "!",
-  "@",
-  "$",
-  "%",
-  "^",
-  "&",
-  "*",
-  "-",
-  "]",
-  ")"
-];
+if (charLen > 128 || charLen < 8) {
+  charLen = prompt("Please enter a password of between 8 and 128 characters");
+}
+var charSpec = ["#", "?", "!", "@", "$", "%", "&"];
 var charNum = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-var charLet = [
+var charUpp = [
   "A",
   "B",
   "C",
@@ -44,7 +32,9 @@ var charLet = [
   "W",
   "X",
   "Y",
-  "Z",
+  "Z"
+];
+var charLow = [
   "a",
   "b",
   "c",
@@ -72,25 +62,11 @@ var charLet = [
   "y",
   "z"
 ];
-// var isCharSpec = true;
-// var isCharNum = true;
-
-var charChoice = [];
-
-var hasCharNum = confirm("Numbers?");
-var hasCharSpec = confirm("Special Characters?");
-var hasCharLet = confirm("Uppercase Characters?");
-var hasCharLet = confirm("Lowercase Characters?");
-
-if (hasCharSpec) {
-  charChoice = charChoice.concat(charSpec);
-}
-if (hasCharNum) {
-  charChoice = charChoice.concat(charNum);
-}
-if (hasCharLet) {
-  charChoice = charChoice.concat(charLet);
-}
+// confirm the characters
+var isCharNum = confirm("Would you like to include Numbers?");
+var isCharSpec = confirm("Would you like to include Special Characters?");
+var isCharUpp = confirm("Would you like to include Uppercase Characters?");
+var isCharLow = confirm("Would you like to include Lowercase Characters?");
 
 function shuffle(array) {
   var currentIndex = array.length,
@@ -114,55 +90,47 @@ function shuffle(array) {
 
 /* defined function */
 function createPassword() {
-  for (i = 0; i < charLen; i++) {
-    var randomSymNo = Math.floor(Math.random() * charChoice.length);
-    pw.push(charChoice[randomSymNo]);
-    console.log(pw);
-    // for (i = 0; i < charLen; i++) {
-    //   if (isCharSpec === true && i === 0) {
-    //     var randomSymNo = Math.floor(Math.random() * charSpec.length);
-    //     /* inject a symbol in the string */
-    //     pw.push(charSpec[randomSymNo]);
-    //   } else {
-    //     /* inject a uppercase letter into the string */
-    //     var randomNo = Math.floor(Math.random() * charLet.length);
-    //     pw.push(charLet[randomNo]);
-    //   }
+  // confirm that characters were included
+  if (
+    isCharNum === true &&
+    isCharSpec === true &&
+    isCharUpp === true &&
+    isCharLow === true
+  ) {
+    for (i = 0; i < charLen; i++) {
+      /* inject a special symbol in the string */
+      if (isCharSpec === true && i === 0) {
+        var randomSymNo = Math.floor(Math.random() * charSpec.length);
+        pw.push(charSpec[randomSymNo]);
+        /* inject an uppercase letter in the string */
+      } else if (isCharUpp === true && i === 1) {
+        var randomUppNo = Math.floor(Math.random() * charUpp.length);
+        pw.push(charUpp[randomUppNo]);
+        /* inject a number in the string */
+      } else if (isCharNum === true && i === 2) {
+        var randomNumNo = Math.floor(Math.random() * charNum.length);
+        pw.push(charNum[randomNumNo]);
+        /* inject a lowercase letter into the string */
+      } else if (isCharLow === true) {
+        var randomLowNo = Math.floor(Math.random() * charLow.length);
+        pw.push(charLow[randomLowNo]);
+      }
+    }
+
+    /* randomize array & convert into a string */
+    pwShuffle = shuffle(pw);
+    var newPass = "";
+    for (i = 0; i < pwShuffle.length; i++) {
+      newPass = newPass + pwShuffle[i];
+    }
+    pwBox.innerHTML = newPass;
+    // reject the password
+  } else {
+    alert(
+      "Unable to generate password. Password must contain 1 or more of the following: Uppercase Letter, Lowercase Letter, Number, and Special Character"
+    );
   }
-  /* randomize array &;/ convert into a string */
-  pwShuffle = shuffle(pw);
-  var newPass = "";
-  for (i = 0; i < pwShuffle.length; i++) {
-    newPass = newPass + pwShuffle[i];
-  }
-  pwBox.innerHTML = newPass;
 }
-
-/* first event */
-// change this pw into a dynamic random pw
-//document.write(pw);
-// defined function
-// function showPrompt() {
-// for (i = 0; i < charLength; i++) {
-// var randomNum;
-// }
-// charSpec = confirm("Would you like to use special characters?");
-// charNum = confirm("Would you like to use any numeric characters?");
-// charLow = confirm("Would you like to use lowercase characters?");
-// charUpp = confirm("Would you like to use uppercase characters?");
-// pwBox.innerHTML = pw;
-// }
-
-// genBtn.addEventListener("click", showAlert);
-
-// number of characters for the password (between 8 and 128)
-// if (charLength < 8) {
-//   alert("password must be longer");
-// }
-// special characters
-// numeric characters
-// lowercase characters
-// uppercase characters
 
 // change this pw into dynamic random pw
 // document.write(pw);
@@ -172,5 +140,6 @@ console.log(charLen);
 console.log(typeof charLen);
 console.log(charSpec);
 console.log(charNum);
-console.log(charLet);
+console.log(charLow);
+console.log(charUpp);
 console.log(pw);
