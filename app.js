@@ -1,8 +1,13 @@
 var pw = [];
 var charLen = prompt("How many characters would you like for your password?");
 charLen = parseInt(charLen, 10);
+if (charLen === NaN) {
+  charLen = 8;
+}
 if (charLen > 128 || charLen < 8) {
-  charLen = prompt("Please enter a password of between 8 and 128 characters");
+  charLen = prompt(
+    "Please enter a number of characters of between 8 and 128 characters"
+  );
 }
 var charSpec = ["#", "?", "!", "@", "$", "%", "&"];
 var charNum = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
@@ -68,6 +73,17 @@ var isCharSpec = confirm("Would you like to include Special Characters?");
 var isCharUpp = confirm("Would you like to include Uppercase Characters?");
 var isCharLow = confirm("Would you like to include Lowercase Characters?");
 
+if (
+  isCharNum === false ||
+  isCharSpec === false ||
+  isCharUpp === false ||
+  isCharLow === false
+) {
+  var isCharNum = confirm("Would you like to include Numbers?");
+  var isCharSpec = confirm("Would you like to include Special Characters?");
+  var isCharUpp = confirm("Would you like to include Uppercase Characters?");
+  var isCharLow = confirm("Would you like to include Lowercase Characters?");
+}
 function shuffle(array) {
   var currentIndex = array.length,
     temporaryValue,
