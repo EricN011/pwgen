@@ -4,15 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Document</title>
   </head>
   <body>
-    <!-- box to show password -->
-    <div id="pwBox">password</div>
-    <!-- button to generate -->
-    <button onclick="createPassword()" id="genBtn">generate</button>
-    <!-- button copy to clipboard -->
-    <button>copy</button>
+    <div class="container">
+      <form class="form-group">
+        <h1>Password Generator</h1>
+        <div class="container1">
+          <!-- box to show password -->
+          <h2>Generate a Password</h2>
+          <div class="passbox" id="pwBox">Password...</div>
+          <!-- button to generate -->
+          <div class="buttons">
+            <button class="" onclick="createPassword()" id="genBtn">
+              Generate
+            </button>
+            <!-- button copy to clipboard -->
+            <button class="" id="copyBtn">Copy</button>
+          </div>
+        </div>
+      </form>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>

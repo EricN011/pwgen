@@ -1,0 +1,25 @@
+/* container */
+.container {
+  border: red 2px solid;
+  align-content: center;
+  background-color: gray;
+  max-width: 960px;
+}
+
+.container1 {
+  background-color: aliceblue;
+}
+
+.passbox {
+  background-color: white;
+  height: 150px;
+  border: dashed;
+  margin: 10px;
+  display: flex;
+  flex-flow: column;
+  width: 98%;
+}
+.buttons {
+  flex-direction: row;
+  text-align: center;
+}

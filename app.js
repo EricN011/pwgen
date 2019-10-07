@@ -73,17 +73,6 @@ var isCharSpec = confirm("Would you like to include Special Characters?");
 var isCharUpp = confirm("Would you like to include Uppercase Characters?");
 var isCharLow = confirm("Would you like to include Lowercase Characters?");
 
-if (
-  isCharNum === false ||
-  isCharSpec === false ||
-  isCharUpp === false ||
-  isCharLow === false
-) {
-  var isCharNum = confirm("Would you like to include Numbers?");
-  var isCharSpec = confirm("Would you like to include Special Characters?");
-  var isCharUpp = confirm("Would you like to include Uppercase Characters?");
-  var isCharLow = confirm("Would you like to include Lowercase Characters?");
-}
 function shuffle(array) {
   var currentIndex = array.length,
     temporaryValue,
