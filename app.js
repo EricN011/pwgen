@@ -95,6 +95,7 @@ function shuffle(array) {
 
 /* defined function */
 function createPassword() {
+  event.preventDefault();
   // confirm that characters were included
   if (
     isCharNum === true &&
@@ -128,6 +129,7 @@ function createPassword() {
     for (i = 0; i < pwShuffle.length; i++) {
       newPass = newPass + pwShuffle[i];
     }
+    console.log(newPass);
     pwBox.innerHTML = newPass;
     // reject the password
   } else {
@@ -135,6 +137,19 @@ function createPassword() {
       "Unable to generate password. Password must contain 1 or more of the following: Uppercase Letter, Lowercase Letter, Number, and Special Character"
     );
   }
+}
+function copyPassword() {
+  /* Get the text field */
+  var copyText = document.getElementById("copyBtn");
+
+  /* Select the text field */
+  copyText.select();
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
 }
 
 // change this pw into dynamic random pw
